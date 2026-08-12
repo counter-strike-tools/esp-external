@@ -239,9 +239,9 @@ void Menu::RenderImpl() {
 	static double last_edit_time = 0.0;
 
 #ifdef _DEBUG
-	static auto title = "cs2-external-danger [dev]";
+	static auto title = "github.com/counter-strike-tools/esp-external [dev]";
 #else
-	static auto title = "cs2-external-danger";
+	static auto title = "github.com/counter-strike-tools/esp-external";
 #endif
 
 	ImGui::SetNextWindowSize(ImVec2(760, 500), ImGuiCond_FirstUseEver);
