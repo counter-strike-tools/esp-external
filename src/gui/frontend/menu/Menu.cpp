@@ -143,36 +143,24 @@ namespace {
 	void ColorPair(const char* left, float* left_color, const char* right, float* right_color, ImGuiColorEditFlags flags)
 	{
 		ImGui::PushID(left_color);
-		ImGui::SetNextItemWidth(-FLT_MIN);
-		if (!ImGui::BeginCombo("##colors", "Colors")) {
-			ImGui::PopID();
-			return;
-		}
-
+		ImGui::TextColored(ui.muted, "Colors");
+		ImGui::SameLine(118.0f);
 		ColorLabel(left);
-		ImGui::SameLine(92.0f);
+		ImGui::SameLine();
 		SolidColorEdit("##left", left_color, flags);
 		ImGui::SameLine();
 		ColorLabel(right);
 		ImGui::SameLine();
 		SolidColorEdit("##right", right_color, flags);
-		ImGui::EndCombo();
 		ImGui::PopID();
 	}
 
 	void ColorSingle(const char* label, float* color, ImGuiColorEditFlags flags)
 	{
 		ImGui::PushID(color);
-		ImGui::SetNextItemWidth(-FLT_MIN);
-		if (!ImGui::BeginCombo("##colors", label)) {
-			ImGui::PopID();
-			return;
-		}
-
 		ColorLabel(label);
-		ImGui::SameLine(92.0f);
+		ImGui::SameLine(118.0f);
 		SolidColorEdit("##color", color, flags);
-		ImGui::EndCombo();
 		ImGui::PopID();
 	}
 
