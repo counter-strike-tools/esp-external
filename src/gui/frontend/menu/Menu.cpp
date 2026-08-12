@@ -273,7 +273,6 @@ void Menu::RenderImpl() {
 		ImGui::PopStyleColor();
 
 		if (active_tab == Tab::AIM) {
-			ImGui::Columns(2, "aim_columns", false);
 			Section(Icons::PERSON, "Aim activation");
 			ToggleRow("aimbot", "Aimbot", &cfg::aimbot::enabled);
 			if (cfg::aimbot::enabled) {
@@ -285,7 +284,6 @@ void Menu::RenderImpl() {
 				SliderFloatRow("Smooth", "##aim_smooth", &cfg::aimbot::smooth, 1.0f, 15.0f, "%.1f");
 				DetailsOut();
 
-				ImGui::NextColumn();
 				Section(Icons::GLOBE, "Targeting");
 				DetailsIn();
 				ToggleRow("aim_visible", "Visible only", &cfg::aimbot::visible_only);
@@ -306,19 +304,14 @@ void Menu::RenderImpl() {
 				DetailsOut();
 			}
 
-			ImGui::Columns(1);
 			Section(Icons::BLIND, "Aim motion");
 			ToggleRow("human", "Humanization", &cfg::aimbot::humanization);
 			if (cfg::aimbot::humanization) {
-				ImGui::Columns(2, "motion_columns", false);
 				DetailsIn();
 				ToggleRow("assist", "Aim assist", &cfg::aimbot::aim_assist);
 				SliderFloatRow("Reaction", "##reaction", &cfg::aimbot::reaction_time_ms, 50.f, 500.f, "%.0f ms");
 				SliderFloatRow("Error", "##aim_error", &cfg::aimbot::aim_error_px, 0.f, 15.f, "%.1f px");
 				SliderFloatRow("Jitter", "##jitter", &cfg::aimbot::tracking_jitter, 0.f, 3.f, "%.1f");
-				DetailsOut();
-				ImGui::NextColumn();
-				DetailsIn();
 				SliderFloatRow("Miss", "##miss", &cfg::aimbot::miss_chance, 0.f, 0.5f, "%.2f");
 				SliderFloatRow("Overshoot", "##overshoot", &cfg::aimbot::flick_overshoot_px, 0.f, 20.f, "%.1f px");
 				ToggleRow("deadzone_enabled", "Dead zone", &cfg::aimbot::dead_zone_enabled);
@@ -326,11 +319,9 @@ void Menu::RenderImpl() {
 					SliderFloatRow("Dead zone", "##dead_zone", &cfg::aimbot::dead_zone, 0.f, 10.f, "%.1f");
 				SliderFloatRow("Stop", "##stop_threshold", &cfg::aimbot::stop_threshold, 0.f, 8.f, "%.1f");
 				DetailsOut();
-				ImGui::Columns(1);
 			}
 		}
 		else if (active_tab == Tab::TRIGGER) {
-			ImGui::Columns(2, "trigger_columns", false);
 			Section(Icons::RELOAD, "Trigger activation");
 			ToggleRow("trigger", "Triggerbot", &cfg::triggerbot::enabled);
 			if (cfg::triggerbot::enabled) {
@@ -347,7 +338,6 @@ void Menu::RenderImpl() {
 				DetailsOut();
 			}
 
-			ImGui::NextColumn();
 			Section(Icons::BLIND, "Recoil");
 			ToggleRow("rcs", "Recoil control", &cfg::rcs::enabled);
 			if (cfg::rcs::enabled) {
@@ -365,10 +355,8 @@ void Menu::RenderImpl() {
 				SliderFloatRow("Opacity", "##flash_opacity", &cfg::antiflash::opacity, 0.0f, 1.0f, "%.2f");
 				DetailsOut();
 			}
-			ImGui::Columns(1);
 		}
 		else if (active_tab == Tab::VISUALS) {
-			ImGui::Columns(2, "visual_columns", false);
 			Section(Icons::PERSON, "Player outlines");
 			ToggleRow("esp_box", "Box", &cfg::esp::box);
 			if (cfg::esp::box) {
@@ -440,10 +428,8 @@ void Menu::RenderImpl() {
 				ColorPair("Team##c4_team", cfg::esp::colors::flags::c4_team.data(), "Enemy##c4_enemy", cfg::esp::colors::flags::c4_enemy.data(), color_flags);
 				DetailsOut();
 			}
-			ImGui::Columns(1);
 		}
 		else if (active_tab == Tab::WORLD) {
-			ImGui::Columns(2, "world_columns", false);
 			Section(Icons::GLOBE, "Bomb");
 			ToggleRow("bomb_box", "Bomb ESP", &cfg::esp::bomb);
 			if (cfg::esp::bomb) {
@@ -455,7 +441,6 @@ void Menu::RenderImpl() {
 			ToggleRow("bomb_timer", "Bomb timer", &cfg::world::bomb::timer);
 			ToggleRow("bomb_hud", "Bomb HUD", &cfg::world::bomb::hud);
 
-			ImGui::NextColumn();
 			Section(Icons::GLOBE, "World overlays");
 			ToggleRow("spectators", "Spectator list", &cfg::world::spectators::enabled);
 			if (cfg::world::spectators::enabled) {
@@ -479,7 +464,6 @@ void Menu::RenderImpl() {
 				SliderFloatRow("Length", "##velocity_length", &cfg::world::velocity::sample_length, 1.f, 15.f, "%.1f");
 				DetailsOut();
 			}
-			ImGui::Columns(1);
 		}
 		else if (active_tab == Tab::SETTINGS) {
 			Section(Icons::SETTINGS, "Runtime");
